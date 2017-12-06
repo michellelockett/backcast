@@ -7,6 +7,7 @@ var AppView = Backbone.View.extend({
     this.render();
   },
 
+
   render: function() {
     //set the html for appView
     this.$el.html(this.template());
@@ -19,13 +20,15 @@ var AppView = Backbone.View.extend({
 
     //render the search
     new SearchView({
-      el: this.$('.search')
-    }).render()
+      el: this.$('.search'),
+      collection: this.videos
+    }).render();
 
-    //render the player
+    //render the player with the first video in the list to begin
     new VideoPlayerView({
-     el: this.$('.player')
-    }).render()
+     el: this.$('.player'),
+     model: this.videos.first()
+    }).render();
 
     //return the appview
     return this;
